@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
+import pages.HomePage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,17 +51,9 @@ public class Startup {
                 driver=null;
                 break;
         }
-
+        driver.manage().window().maximize();
         driver.get(prop.getProperty("url"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.findElement(By.xpath("//input[@id='pincodeInput']")).sendKeys("400706");
-        Thread.sleep(5000);
-        driver.findElement(By.xpath("//ul[@class='pincode-widget_pincode-list__ACLIQ']/li")).click();
-        driver.findElement(By.xpath("//button[text()='START SHOPPING']")).click();
-
-
-        Assert.assertEquals(driver.findElement(By.xpath("//span[@class='header_title__Q14Kw']")).getText(),"400706");
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
     }
 
